@@ -14,7 +14,6 @@ class BankAccount extends BaseModel
     
     //datasource query 
     public function getAccountSummaryPerYear($year) {
-        
         return $this->payments()
             ->groupBy("bank_account",\DB::raw("MONTH(date_deposited)"))
             ->where(\DB::raw("YEAR(date_deposited)"),$year)
