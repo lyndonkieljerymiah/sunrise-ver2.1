@@ -10,37 +10,39 @@ namespace App\Services;
 
 
 
-use App\Http\Datasource\Villas\PaymentSchedule;
+use Carbon\Carbon;
 use App\Http\Reports\BankReport;
+use App\Http\Reports\TenantReport;
 use App\Http\Reports\ContractReport;
-use App\Http\Reports\ExpenseMasterReport;
 use App\Http\Reports\VillaFormReport;
 use App\Http\Reports\VillaSalesReport;
-use App\Http\Reports\TenantReport;
+use App\Http\Reports\ExpenseMasterReport;
 
-use Carbon\Carbon;
+use App\Http\Reports\VillaMasterListReport;
+use App\Http\Datasource\Villas\PaymentSchedule;
 
 class ReportManager
 {
 
     protected static $reports = [];
 
-    public static function get($key, $params)
+    public static function get($key,$params)
     {
         self::$reports = [
-            'villa_master'      =>  new VillaFormReport($params,'form'),
-            'contract_value'    =>  new ContractReport($params,'value'),
-            'contract_pending'  =>  new ContractReport($params,'pending'),
-            'contract_expiry'   =>  new ContractReport($params,'expiry'),
-            'contract_active'   =>  new ContractReport($params,'active'),
-            'payment_schedule'  =>  new ContractReport($params,'payment_schedule'),
-            'villa_payment'     =>  new VillaSalesReport($params),
-            'expense_property'  =>  new ExpenseMasterReport($params),
-            'villa_history'     =>  new VillaFormReport($params,'ledger'),
-            'tenant_history'    =>  new TenantReport($params),
-            'bank_report'        =>  new BankReport($params)
+            'villa_master'          =>  new VillaFormReport($params,'form'),
+            'contract_value'        =>  new ContractReport($params,'value'),
+            'contract_pending'      =>  new ContractReport($params,'pending'),
+            'contract_expiry'       =>  new ContractReport($params,'expiry'),
+            'contract_active'       =>  new ContractReport($params,'active'),
+            'payment_schedule'      =>  new ContractReport($params,'payment_schedule'),
+            'villa_payment'         =>  new VillaSalesReport($params),
+            'expense_property'      =>  new ExpenseMasterReport($params),
+            'villa_history'         =>  new VillaFormReport($params,'ledger'),
+            'tenant_history'        =>  new TenantReport($params),
+            'bank_report'           =>  new BankReport($params),
+            'villa_master_list'     =>  new VillaMasterListReport($params)
         ];
-
+        
         return self::$reports[$key];
     }
 

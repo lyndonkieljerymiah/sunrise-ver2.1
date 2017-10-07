@@ -6,10 +6,12 @@ use Illuminate\Database\Eloquent\Model;
 
 class Villa extends BaseModel
 {
+    
+
     protected $custSelectionKeys = ["villa_class","status","location"];
 
     protected $table = 'villas';
-
+    
     protected $appends = ['full_rate_per_month','full_location','full_villa_class','full_status'];
 
 

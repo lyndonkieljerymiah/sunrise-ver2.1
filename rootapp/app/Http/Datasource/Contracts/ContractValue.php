@@ -45,7 +45,6 @@ class ContractValue implements IDataSource
                             'contracts.period_start','contracts.period_end',
                             'villas.rate_per_month','contracts.amount','contracts.status')->get();
 
-        $total = $recordset->sum('contracts.amount');
         $rows = $this->arrayGroup($recordset,function($row) {
             $item = [
                 'villa_no'      =>  $row->villa_no,

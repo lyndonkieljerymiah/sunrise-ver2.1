@@ -60,8 +60,8 @@ class ExpenditureController extends Controller
                 'amount'            =>  number_format($expense->amount,2)
             ];
             array_push($items,$item);
-
         }
+        
         return $this->createOutput($expenses,$items);
     }
 

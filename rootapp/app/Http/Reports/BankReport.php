@@ -1,28 +1,33 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: arnold.mercado
- * Date: 10/5/2017
- * Time: 11:33 AM
- */
 
 namespace App\Http\Reports;
 
 
-use App\Http\Datasource\Bank\BankDeposit;
+use App\Http\Datasource\Bank\BankDepositDetail;
+use App\Http\Datasource\Bank\BankDepositSummary;
 
 class BankReport extends BaseReport
 {
 
+    private $templateSource;
+
 
     public function __construct($params)
     {
-        $this->dataSource = new BankDeposit($params);
+        if(isset($params['report_type']) && $params['report_type'] == "summary") {
+            $this->dataSource = new BankDepositSummary($params);
+            $this->templateSource = "bank-account-summary";
+        }
+        else {
+            $this->dataSource = new BankDepositDetail($params);
+            $this->templateSource = "bank-account-detail";
+        }
+        
     }
 
     public function getTemplateSource()
     {
-        return "bank-account";
+        return $this->dataSource;
     }
 
     public function isPdfRender()
@@ -33,7 +38,7 @@ class BankReport extends BaseReport
 
     public function isApi()
     {
-        return true;
+        return false;
     }
 
     public function getLookups()

@@ -29,7 +29,9 @@ class ReportController extends Controller
 
     public function show($reportId,Request $request) {
 
+        
         $inputs = $request->all();
+
         $report = ReportManager::get($reportId,$inputs);
         $datasource = $report->execute();
         $template = $report->getTemplateSource();

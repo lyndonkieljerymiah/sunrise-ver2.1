@@ -75,6 +75,7 @@ class ContractBill extends BaseModel
         return $this->belongsTo('App\Contract','contract_id');
 
     }
+    
     public function tenant() {
 
         return $this->contract()->first()->tenant()->first();

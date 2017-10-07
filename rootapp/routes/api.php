@@ -52,8 +52,13 @@ Route::group(["prefix" => "calendar"],function() {
    Route::get("/contract", "CalendarController@contract");
 });
 
-//reports
+/*----------------------------------------------
+*   Mobile and Web Reports API
+-----------------------------------------------*/
 Route::get('reports/{reportId}',"ReportController@apiShow");
+
+
+
 
 
 //Route mockup

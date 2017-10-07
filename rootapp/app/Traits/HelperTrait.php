@@ -41,6 +41,22 @@ trait HelperTrait
         }
     }
 
+    public function sum($items,$field) {
+        $total = 0;
+        if(is_array($items)) {
+            foreach($items as $item) {
+                
+                if(is_object($item) && is_numeric($item->{$field})) {
+                    $total += floatval($item->{$field});
+                }
+                else if(is_numeric($item[$field])) {
+                    $total += floatval($item[$field]);
+                }
+            }
+        }
+        return $total;
+    }
+
     public function convertYearToMonth($period_start,$period_end) {
 
     }
